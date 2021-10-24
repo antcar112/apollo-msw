@@ -1,0 +1,6 @@
+fragment country on Country {
+  name
+  emoji
+  phone
+  code
+}

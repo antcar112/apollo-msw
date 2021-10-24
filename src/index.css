@@ -1,7 +1,7 @@
 /* ./src/index.css */
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 body {
   margin: 0;
@@ -15,4 +15,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.country-container {
+  padding: 50px;
+  background: #232323;
+  color: #ddd;
 }
