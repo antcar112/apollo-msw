@@ -1,4 +1,3 @@
-import React from 'react'
 import { Countries } from 'pages'
 
 export const App = () => {

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { CountryFragment, Maybe } from 'gql'
 
 type CountryListItemProps = {

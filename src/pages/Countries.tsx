@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useGetCountriesQuery } from 'gql'
 import { CountryListItem } from './CountryListItem'
 
