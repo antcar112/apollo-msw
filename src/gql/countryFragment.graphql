@@ -1,6 +1,11 @@
 fragment country on Country {
+  code
   name
   emoji
   phone
-  code
+  capital
+  currency
+  states {
+    ...state
+  }
 }

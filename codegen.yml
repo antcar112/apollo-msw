@@ -1,12 +1,16 @@
 overwrite: true
 schema: 'https://countries.trevorblades.com/'
 documents: 'src/gql/**/*.graphql'
+config:
+  maybeValue: T | null | undefined
+  namingConvention:
+    enumValues: change-case-all#upperCase
+hooks:
+  afterAllFileWrite:
+    - prettier --write
 generates:
   src/gql/generated.ts:
     plugins:
       - 'typescript'
       - 'typescript-operations'
       - 'typescript-react-apollo'
-  # ./graphql.schema.json:
-  #   plugins:
-  #     - 'introspection'

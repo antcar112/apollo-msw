@@ -1,10 +1,9 @@
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
-import { Countries } from './Countries'
+import './index.css'
+import { App } from './App'
 
 const client = new ApolloClient({
   uri: 'https://countries.trevorblades.com/',
@@ -13,8 +12,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    {/* <App /> */}
-    <Countries />
+    <App />
   </ApolloProvider>,
   document.getElementById('root')
 )

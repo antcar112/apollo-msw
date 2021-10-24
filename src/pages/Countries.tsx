@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
-import { useGetCountriesQuery } from './gql'
+import { useGetCountriesQuery } from 'gql'
+import { CountryListItem } from './CountryListItem'
 
 export const Countries: FC = () => {
   const { loading, error, data } = useGetCountriesQuery()
@@ -11,10 +12,8 @@ export const Countries: FC = () => {
     <div className="country-container">
       <h1>Countries</h1>
       <ul>
-        {data.countries.map(({ name, emoji, code, phone }) => (
-          <li key={name}>
-            {name}: {emoji} - {code} - {phone}
-          </li>
+        {data.countries.map((country) => (
+          <CountryListItem key={country.code} {...country} />
         ))}
       </ul>
     </div>
