@@ -1,9 +1,10 @@
 import { Countries } from 'pages'
+import { Container } from '@mui/material'
 
-export const App = () => {
-  return (
-    <div>
+export const App = () => (
+  <div className="app-container">
+    <Container maxWidth="md">
       <Countries />
-    </div>
-  )
-}
+    </Container>
+  </div>
+)

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useGetCountriesQuery } from 'gql'
 import { CountryListItem } from './CountryListItem'
-import Button from '@mui/material/Button'
+import { Typography } from '@mui/material'
 
 export const Countries: FC = () => {
   const { loading, error, data } = useGetCountriesQuery()
@@ -11,7 +11,7 @@ export const Countries: FC = () => {
 
   return (
     <div className="country-container">
-      <h1>Countries</h1>
+      <Typography variant="h1">Countries</Typography>
       <ul>
         {data.countries.map((country) => (
           <CountryListItem key={country.code} {...country} />
