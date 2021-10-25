@@ -7,15 +7,12 @@ import {
   TableRow,
   TableSortLabel,
   Paper,
-  TableCellProps,
 } from '@mui/material'
 import { ReactElement } from 'react'
-import { Column, useTable, useSortBy } from 'react-table'
-
-export type MuiColumn<D extends object> = Column<D> & { muiProps?: TableCellProps }
+import { Column, useSortBy, useTable } from 'react-table'
 
 type TableProps<D extends object> = {
-  columns: Array<MuiColumn<D>>
+  columns: Array<Column<D>>
   data: Array<D>
 }
 export const Table = <D extends object>({ columns, data }: TableProps<D>): ReactElement => {
@@ -34,13 +31,17 @@ export const Table = <D extends object>({ columns, data }: TableProps<D>): React
           {headerGroups.map((headerGroup) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <TableCell {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  <TableSortLabel
-                    active={column.isSorted}
-                    direction={column.isSortedDesc ? 'desc' : 'asc'}
-                  >
-                    {column.render('Header')}
-                  </TableSortLabel>
+                <TableCell {...column.getHeaderProps(column.getSortByToggleProps(column.muiProps))}>
+                  {column.disableSortBy ? (
+                    column.render('Header')
+                  ) : (
+                    <TableSortLabel
+                      active={column.isSorted}
+                      direction={column.isSortedDesc ? 'desc' : 'asc'}
+                    >
+                      {column.render('Header')}
+                    </TableSortLabel>
+                  )}
                 </TableCell>
               ))}
             </TableRow>
@@ -52,7 +53,9 @@ export const Table = <D extends object>({ columns, data }: TableProps<D>): React
             return (
               <TableRow {...row.getRowProps()}>
                 {row.cells.map((cell) => (
-                  <TableCell {...cell.getCellProps()}>{cell.render('Cell')}</TableCell>
+                  <TableCell {...cell.getCellProps(cell.column.muiProps)}>
+                    {cell.render('Cell')}
+                  </TableCell>
                 ))}
               </TableRow>
             )

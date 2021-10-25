@@ -20,7 +20,8 @@
       "components": ["./components"],
       "gql": ["./gql"],
       "pages": ["./pages"]
-    }
+    },
+    "typeRoots": ["./@types"]
   },
-  "include": ["./src"]
+  "include": ["./src", "./@types/**/*"]
 }
