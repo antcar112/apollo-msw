@@ -5,20 +5,27 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TableSortLabel,
   Paper,
+  TableCellProps,
 } from '@mui/material'
 import { ReactElement } from 'react'
-import { Column, useTable } from 'react-table'
+import { Column, useTable, useSortBy } from 'react-table'
+
+export type MuiColumn<D extends object> = Column<D> & { muiProps?: TableCellProps }
 
 type TableProps<D extends object> = {
-  columns: Array<Column<D>>
+  columns: Array<MuiColumn<D>>
   data: Array<D>
 }
 export const Table = <D extends object>({ columns, data }: TableProps<D>): ReactElement => {
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
-    columns,
-    data,
-  })
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable<D>(
+    {
+      columns,
+      data,
+    },
+    useSortBy
+  )
 
   return (
     <TableContainer component={Paper}>
@@ -27,7 +34,14 @@ export const Table = <D extends object>({ columns, data }: TableProps<D>): React
           {headerGroups.map((headerGroup) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <TableCell {...column.getHeaderProps()}>{column.render('Header')}</TableCell>
+                <TableCell {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  <TableSortLabel
+                    active={column.isSorted}
+                    direction={column.isSortedDesc ? 'desc' : 'asc'}
+                  >
+                    {column.render('Header')}
+                  </TableSortLabel>
+                </TableCell>
               ))}
             </TableRow>
           ))}

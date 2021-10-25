@@ -1,12 +1,11 @@
 import { useMemo } from 'react'
 import { CountryFragment, useGetCountriesQuery } from 'gql'
-import { Table } from 'components'
-import { Column } from 'react-table'
+import { Table, MuiColumn } from 'components'
 export const CountryTable = () => {
   const { loading, error, data } = useGetCountriesQuery()
 
   const columns = useMemo(
-    (): Array<Column<CountryFragment>> => [
+    (): Array<MuiColumn<CountryFragment>> => [
       {
         Header: 'Name',
         accessor: 'name',
@@ -24,6 +23,7 @@ export const CountryTable = () => {
         Header: 'Capital',
         accessor: 'capital',
         Cell: ({ value }) => value || '-',
+        muiProps: { align: 'right' },
       },
       {
         Header: 'Currency',
