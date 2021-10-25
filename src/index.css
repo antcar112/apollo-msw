@@ -10,4 +10,5 @@ body {
   padding-top: 4em;
   background: #232323;
   color: #ddd;
+  min-height: 100vh;
 }

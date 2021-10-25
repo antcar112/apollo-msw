@@ -1,8 +1,10 @@
 fragment country on Country {
   code
   name
-  emoji
-  phone
+  native
+  continent {
+    name
+  }
   capital
   currency
   states {

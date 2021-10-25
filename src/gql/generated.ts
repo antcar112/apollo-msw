@@ -119,10 +119,10 @@ export type CountryFragment = {
   __typename?: 'Country'
   code: string
   name: string
-  emoji: string
-  phone: string
+  native: string
   capital?: string | null | undefined
   currency?: string | null | undefined
+  continent: { __typename?: 'Continent'; name: string }
   states: Array<{ __typename?: 'State'; code?: string | null | undefined; name: string }>
 }
 
@@ -134,10 +134,10 @@ export type GetCountriesQuery = {
     __typename?: 'Country'
     code: string
     name: string
-    emoji: string
-    phone: string
+    native: string
     capital?: string | null | undefined
     currency?: string | null | undefined
+    continent: { __typename?: 'Continent'; name: string }
     states: Array<{ __typename?: 'State'; code?: string | null | undefined; name: string }>
   }>
 }
@@ -154,8 +154,10 @@ export const CountryFragmentDoc = gql`
   fragment country on Country {
     code
     name
-    emoji
-    phone
+    native
+    continent {
+      name
+    }
     capital
     currency
     states {
