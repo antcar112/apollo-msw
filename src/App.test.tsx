@@ -1,15 +1,13 @@
-import * as React from "react";
-import { render } from "@testing-library/react";
-import App from "./App";
+import { MockedProvider } from '@apollo/client/testing'
+import { render, screen } from '@testing-library/react'
+import { FC } from 'react'
+import { App } from './App'
 
-test("renders learn react link", () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+const wrapper: FC = ({ children }) => <MockedProvider>{children}</MockedProvider>
 
-test("does not render an learn angular link", () => {
-  const { queryByText } = render(<App />);
-  const linkElement = queryByText(/learn angular/i);
-  expect(linkElement).not.toBeInTheDocument();
-});
+test('renders learn react link', () => {
+  render(<App />, { wrapper })
+  const link = screen.getByText(/Countries/i)
+  expect(link).toBeInTheDocument()
+  screen.debug()
+})
