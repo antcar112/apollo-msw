@@ -14,3 +14,8 @@ generates:
       - 'typescript'
       - 'typescript-operations'
       - 'typescript-react-apollo'
+  src/mocks/introspection.json:
+    plugins:
+      - introspection
+    config:
+      minify: true
