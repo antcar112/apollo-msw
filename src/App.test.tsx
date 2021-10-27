@@ -1,13 +1,14 @@
-import { MockedProvider } from '@apollo/client/testing'
 import { render, screen } from '@testing-library/react'
 import { FC } from 'react'
 import { App } from './App'
+import { Provider } from './Provider'
 
-const wrapper: FC = ({ children }) => <MockedProvider>{children}</MockedProvider>
+const wrapper: FC = ({ children }) => <Provider>{children}</Provider>
 
-test('renders learn react link', () => {
+test('renders learn react link', async () => {
   render(<App />, { wrapper })
   const link = screen.getByText(/Countries/i)
   expect(link).toBeInTheDocument()
-  screen.debug()
+
+  await screen.findByText(/canada/i)
 })
