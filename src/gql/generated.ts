@@ -115,28 +115,56 @@ export type StringQueryOperatorInput = {
   regex?: Maybe<Scalars['String']>
 }
 
-export type CountryFragment = { __typename?: 'Country'; code: string; name: string }
+export type CountryFragment = {
+  __typename?: 'Country'
+  code: string
+  name: string
+  native: string
+  capital?: string | null | undefined
+  currency?: string | null | undefined
+  continent: { __typename?: 'Continent'; name: string }
+  states: Array<{ __typename?: 'State'; code?: string | null | undefined; name: string }>
+}
 
 export type GetCountriesQueryVariables = Exact<{ [key: string]: never }>
 
 export type GetCountriesQuery = {
   __typename?: 'Query'
-  countries: Array<{ __typename?: 'Country'; code: string; name: string }>
+  countries: Array<{
+    __typename?: 'Country'
+    code: string
+    name: string
+    native: string
+    capital?: string | null | undefined
+    currency?: string | null | undefined
+    continent: { __typename?: 'Continent'; name: string }
+    states: Array<{ __typename?: 'State'; code?: string | null | undefined; name: string }>
+  }>
 }
 
 export type StateFragment = { __typename?: 'State'; code?: string | null | undefined; name: string }
 
-export const CountryFragmentDoc = gql`
-  fragment country on Country {
-    code
-    name
-  }
-`
 export const StateFragmentDoc = gql`
   fragment state on State {
     code
     name
   }
+`
+export const CountryFragmentDoc = gql`
+  fragment country on Country {
+    code
+    name
+    native
+    continent {
+      name
+    }
+    capital
+    currency
+    states {
+      ...state
+    }
+  }
+  ${StateFragmentDoc}
 `
 export const GetCountriesDocument = gql`
   query getCountries {

@@ -1,13 +1,13 @@
 fragment country on Country {
   code
   name
-  # native
-  # continent {
-  #   name
-  # }
-  # capital
-  # currency
-  # states {
-  #   ...state
-  # }
+  native
+  continent {
+    name
+  }
+  capital
+  currency
+  states {
+    ...state
+  }
 }

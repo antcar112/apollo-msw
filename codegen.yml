@@ -19,3 +19,6 @@ generates:
       - introspection
     config:
       minify: true
+      # descriptions: false
+      # specifiedByUrl: true
+      # schemaDescription: true

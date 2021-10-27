@@ -2,6 +2,7 @@ import { setupServer } from 'msw/node'
 import { handlers } from './handlers'
 import { rest } from 'msw'
 import { gql } from '@apollo/client'
+import faker from 'faker'
 
 import { buildClientSchema, execute } from 'graphql'
 import { addMocksToSchema } from '@graphql-tools/mock'
@@ -14,10 +15,19 @@ import introspection from './introspection.json'
 const schema = buildClientSchema(introspection as any)
 
 // Stub out our schema with fake data
-const mockedSchema = addMocksToSchema({ schema })
+const mockedSchema = addMocksToSchema({
+  schema,
+  mocks: {
+    Country: () => ({
+      name: faker.address.country(),
+      code: faker.address.countryCode(),
+    }),
+  },
+  preserveResolvers: false,
+})
 
 export const server = setupServer(
-  rest.post<{ query: string; variables: any }>(
+  rest.post<{ query: string; variables: Record<string, unknown> }>(
     'https://countries.trevorblades.com/',
     async (req, res, ctx) => {
       const result = await execute(

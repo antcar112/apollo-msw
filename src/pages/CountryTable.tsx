@@ -38,7 +38,7 @@ export const CountryTable = () => {
   )
 
   const countries = useMemo(() => data?.countries || [], [data])
-
+  console.log({ loading, error, countries })
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error</p>
 

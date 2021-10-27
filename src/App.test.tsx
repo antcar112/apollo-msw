@@ -14,6 +14,7 @@ describe('App', () => {
     expect(link).toBeInTheDocument()
 
     await screen.findByText(/canada/i)
+    screen.logTestingPlaygroundURL()
   })
 
   test('renders other', async () => {
