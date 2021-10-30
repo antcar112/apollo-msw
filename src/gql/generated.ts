@@ -115,6 +115,8 @@ export type StringQueryOperatorInput = {
   regex?: Maybe<Scalars['String']>
 }
 
+export type ContinentFragment = { __typename?: 'Continent'; code: string; name: string }
+
 export type CountryFragment = {
   __typename?: 'Country'
   code: string
@@ -122,7 +124,7 @@ export type CountryFragment = {
   native: string
   capital?: string | null | undefined
   currency?: string | null | undefined
-  continent: { __typename?: 'Continent'; name: string }
+  continent: { __typename?: 'Continent'; code: string; name: string }
   states: Array<{ __typename?: 'State'; code?: string | null | undefined; name: string }>
 }
 
@@ -137,13 +139,19 @@ export type GetCountriesQuery = {
     native: string
     capital?: string | null | undefined
     currency?: string | null | undefined
-    continent: { __typename?: 'Continent'; name: string }
+    continent: { __typename?: 'Continent'; code: string; name: string }
     states: Array<{ __typename?: 'State'; code?: string | null | undefined; name: string }>
   }>
 }
 
 export type StateFragment = { __typename?: 'State'; code?: string | null | undefined; name: string }
 
+export const ContinentFragmentDoc = gql`
+  fragment continent on Continent {
+    code
+    name
+  }
+`
 export const StateFragmentDoc = gql`
   fragment state on State {
     code
@@ -156,7 +164,7 @@ export const CountryFragmentDoc = gql`
     name
     native
     continent {
-      name
+      ...continent
     }
     capital
     currency
@@ -164,6 +172,7 @@ export const CountryFragmentDoc = gql`
       ...state
     }
   }
+  ${ContinentFragmentDoc}
   ${StateFragmentDoc}
 `
 export const GetCountriesDocument = gql`

@@ -26,6 +26,7 @@ const mockedSchema = addMocksToSchema({
   preserveResolvers: false,
 })
 
+// export const server = setupServer(...handlers)
 export const server = setupServer(
   rest.post<{ query: string; variables: Record<string, unknown> }>(
     'https://countries.trevorblades.com/',

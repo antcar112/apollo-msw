@@ -4,6 +4,7 @@ documents: 'src/gql/**/*.graphql'
 config:
   maybeValue: T | null | undefined
   namingConvention:
+    typeValues: change-case-all#pascalCase
     enumValues: change-case-all#upperCase
 hooks:
   afterAllFileWrite:
@@ -19,6 +20,3 @@ generates:
       - introspection
     config:
       minify: true
-      # descriptions: false
-      # specifiedByUrl: true
-      # schemaDescription: true

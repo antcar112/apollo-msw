@@ -3,7 +3,7 @@ fragment country on Country {
   name
   native
   continent {
-    name
+    ...continent
   }
   capital
   currency

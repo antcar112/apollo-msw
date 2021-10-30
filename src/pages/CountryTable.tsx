@@ -6,6 +6,13 @@ import { Column } from 'react-table'
 export const CountryTable = () => {
   const { loading, error, data } = useGetCountriesQuery()
 
+  // console.log({
+  //   loading,
+  //   error,
+  //   countries: data?.countries,
+  //   continent: data?.countries?.[0]?.continent,
+  // })
+
   const columns = useMemo(
     (): Array<Column<CountryFragment>> => [
       {
@@ -20,13 +27,13 @@ export const CountryTable = () => {
       //   Header: 'Continent',
       //   accessor: (row) => row.continent.name,
       //   id: 'continent.name',
-      //   disableSortBy: true,
+      //   // disableSortBy: true,
       // },
       // {
       //   Header: 'Capital',
       //   accessor: 'capital',
       //   Cell: ({ value }) => value || '-',
-      //   muiProps: { align: 'right' },
+      //   // muiProps: { align: 'right' },
       // },
       // {
       //   Header: 'Currency',
@@ -38,7 +45,7 @@ export const CountryTable = () => {
   )
 
   const countries = useMemo(() => data?.countries || [], [data])
-  console.log({ loading, error, countries })
+
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error</p>
 
