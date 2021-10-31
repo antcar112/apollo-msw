@@ -17,9 +17,11 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
+      "apollo": ["./apollo"],
       "components": ["./components"],
       "gql": ["./gql"],
-      "pages": ["./pages"]
+      "pages": ["./pages"],
+      "types": ["./types"]
     },
     "typeRoots": ["./node_modules/@types"]
   },
