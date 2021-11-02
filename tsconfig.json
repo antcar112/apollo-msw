@@ -20,6 +20,7 @@
       "apollo": ["./apollo"],
       "components": ["./components"],
       "gql": ["./gql"],
+      "mocks": ["./mocks"],
       "pages": ["./pages"],
       "types": ["./types"]
     },

@@ -8,6 +8,7 @@ import { buildClientSchema, execute } from 'graphql'
 import { addMocksToSchema } from '@graphql-tools/mock'
 
 import introspection from './introspection.json'
+
 // Setup requests interception using the given handlers.
 // export const server = setupServer(...handlers)
 

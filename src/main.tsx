@@ -1,7 +1,7 @@
 import './index.css'
 import ReactDOM from 'react-dom'
 
-import { Provider } from './Provider'
+import { Provider } from 'apollo'
 import { App } from './App'
 
 ReactDOM.render(

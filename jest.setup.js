@@ -4,10 +4,10 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect'
 import 'cross-fetch/polyfill'
-import { disableFragmentWarnings } from 'graphql-tag'
 
-import { client } from './src/client'
-import { server } from './src/mocks/server'
+import { disableFragmentWarnings } from 'graphql-tag'
+import { client } from 'apollo'
+import { server } from 'mocks'
 
 beforeAll(() => {
   disableFragmentWarnings()

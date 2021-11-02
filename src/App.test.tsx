@@ -1,10 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { FC } from 'react'
-import { App } from './App'
-import { Provider } from './Provider'
-import { server } from './mocks/server'
+import { Provider } from 'apollo'
+import { server } from 'mocks'
 import { graphql } from 'msw'
 import { GetCountriesQuery, GetCountriesQueryVariables } from 'gql'
+
+import { App } from './App'
 
 const wrapper: FC = ({ children }) => <Provider>{children}</Provider>
 
@@ -26,7 +27,7 @@ describe('App', () => {
               countries: [
                 {
                   __typename: 'Country',
-                  code: 'CA',
+                  code: 'FI',
                   name: 'Finland',
                   native: 'LA',
                   currency: null,

@@ -85,6 +85,7 @@ module.exports = {
     '^apollo': ['<rootDir>/src/apollo'],
     '^components': ['<rootDir>/src/components'],
     '^gql': ['<rootDir>/src/gql'],
+    '^mocks': ['<rootDir>/src/mocks'],
     '^pages': ['<rootDir>/src/pages'],
     '^types': ['<rootDir>/src/types'],
   },
